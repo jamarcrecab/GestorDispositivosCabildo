@@ -24,8 +24,8 @@ class DispositivosController extends Controller
                           ->orWhere('tipo_dispositivo','like','%'.$busqueda.'%')
                           ->orWhere('conexion','like','%'.$busqueda.'%')
                           ->orWhere('zona_trabajo','like','%'.$busqueda.'%');
-                        })->paginate(10)
-                          ->withQueryString(),
+                        })->orderBy('nombre_dispositivo')
+                          ->paginate(10),
 
             'tarjetas' => Tarjeta::query()
                           ->when(RequestFacade::input('busquedaTarjetas'), function($query,$busqueda){
@@ -39,19 +39,16 @@ class DispositivosController extends Controller
                             ->orWhere('puk','like','%'.$busqueda.'%')
                             ->orWhere('tipo_contrato','like','%'.$busqueda.'%');
 
-                          })->paginate(10)
-                            ->withQueryString(),
+                          })->orderBy('telefono')
+                            ->paginate(10)
+                        
                         
                     ]);
         }
 
         public function crear(){
 
-          return Inertia::render('Dispositivos/Create',[
-
-                'zonas' => Zona::all(),
-                'departamentos' => Departamento::all(),
-            ]); 
+          return Inertia::render('Dispositivos/Create');
 
         }
 
@@ -60,31 +57,6 @@ class DispositivosController extends Controller
             Dispositivo::find($id)->delete();
 
             return redirect('/dispositivos')->with('mensaje','Dispositivo eliminado correctamente');
-
-        }
-
-
-        public function pruebas(){
-
-          return Inertia::render('Dispositivos/Pruebas');
-
-
-        }
-
-        public function subirpruebas(){
-
-    
-            $data = RequestFacade::validate([
-    
-                'foto' => ['nullable']
-
-            ]);
-
-          dd($data);
-
-
-
-
 
         }
 

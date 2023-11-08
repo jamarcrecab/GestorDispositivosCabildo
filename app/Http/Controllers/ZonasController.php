@@ -19,7 +19,7 @@ class ZonasController extends Controller
 
         public function getzonas(){
 
-            $zonas = Zona::all();
+            $zonas = Zona::orderBy('nombre')->get();
 
             return $zonas;
 

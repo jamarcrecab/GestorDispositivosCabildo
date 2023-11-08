@@ -12,7 +12,7 @@ class DepartamentosController extends Controller
     
     public function getdepartamentos(){
 
-        $departamentos = Departamento::all();
+        $departamentos = Departamento::orderBy('nombre')->get();
 
         return $departamentos;
 
