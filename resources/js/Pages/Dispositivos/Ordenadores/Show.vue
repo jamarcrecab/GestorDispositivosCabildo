@@ -118,8 +118,10 @@
 
                     <p class="mt-4 text-xl text-teal-600">QR</p>
 
-                    <Qrcode :size=150 :value="`${app_url}/dispositivos/ordenador/mostrar/${dispositivo.id}`"></Qrcode>
+                    <Qrcode v-if="ordenador.ip_secundaria == null" :size=150 :value="`Nombre Dispositivo: ${dispositivo.nombre_dispositivo} | Nº Serie: ${dispositivo.numero_serie} | IP1: ${ordenador.ip_principal} | IP2: No tiene IP Secundaria | SO: ${ordenador.so} | RAM: ${ordenador.ram} | Disco Duro: ${dispositivo.discoduro} | Departamento: ${ordenador.departamento} `"></Qrcode>
 
+                    <Qrcode v-else :size=150 :value="`Nombre Dispositivo: ${dispositivo.nombre_dispositivo} | Nº Serie: ${dispositivo.numero_serie} | IP1: ${ordenador.ip_principal} | IP2: ${ordenador.ip_secundaria} | SO: ${ordenador.so} | RAM: ${ordenador.ram} | Disco Duro: ${dispositivo.discoduro} | Departamento: ${ordenador.departamento} `"></Qrcode>
+                    
                     <div class="mt-5">
 
                         <Link :href="`/ordenador/actualizar/${dispositivo.id}`" class="p-2 bg-teal-600 border border-transparent rounded-md font-semibold text-lg text-white hover:bg-teal-700 focus:bg-teal-700 active:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 ease-out duration-300">Editar</Link>

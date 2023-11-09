@@ -60,7 +60,9 @@
 
                     <p class="mt-4 text-xl text-teal-600">QR</p>
 
-                    <Qrcode :size=150 :value="`${app_url}/dispositivos/impresora/mostrar/${dispositivo.id}`"/> 
+                    <Qrcode v-if="impresora.ip_secundaria == null" :size="150" :value="`Nombre Dispositivo:${dispositivo.nombre_dispositivo} | IP1:${impresora.ip_principal} | IP2:No hay IP Secundaria | Modelo:${impresora.modelo} | Marca:${impresora.marca} | Zona Trabajo:${dispositivo.zona_trabajo}`" />
+
+                    <Qrcode v-else :size=150 :value="`Nombre Dispositivo:${dispositivo.nombre_dispositivo} | IP1:${impresora.ip_principal} | IP2: ${impresora.ip_secundaria} | Modelo:${impresora.modelo} | Marca:${impresora.marca} | Zona Trabajo:${dispositivo.zona_trabajo}`"/> 
 
                     <div class="mt-5">
 

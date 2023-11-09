@@ -8,7 +8,7 @@
 
         <div class="container mx-auto overflow ">
 
-            <h3 class="text-3xl mt-12 font-bold text-neutral-800">{{ props.dispositivo.nombre_dispositivo }}</h3>
+            <h3 class="text-3xl mt-12 font-bold text-neutral-800">{{ dispositivo.nombre_dispositivo }}</h3>
 
             <div class="w-auto flex flex-col justify-start mb-10 mt-7 bg-gray-50 shadow-md p-10 md:flex-row w-2/3 lg:w-2/3 xl:w-2/3 2xl:w-2/3">
 
@@ -42,7 +42,7 @@
 
                     <p class="mt-4 text-xl text-teal-600">QR</p>
 
-                    <Qrcode :size=150 :value="`${app_url}dispositivos/grabadora/mostrar/${dispositivo.id}`"></Qrcode>
+                    <Qrcode :size=150 :value="`Nombre:${dispositivo.nombre_dispositivo} | Tipo Dispositivo:${dispositivo.tipo_dispositivo} | Zona Trabajo: ${dispositivo.zona_trabajo} | Modelo:${grabadora.modelo}`"></Qrcode>
 
                     <div class="mt-5">
 

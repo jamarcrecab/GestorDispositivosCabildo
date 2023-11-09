@@ -64,7 +64,8 @@
 
                     <p class="mt-4 text-xl text-teal-600">QR</p>
 
-                    <Qrcode :size=150 :value="`/localhost/telefono/mostrar/${dispositivo.id}`"></Qrcode>
+                    <Qrcode v-if="dispositivo.numero_serie == null" :size=150 :value="`Nombre Dispositivo:${dispositivo.nombre_dispositivo} | Usuario: ${telefono.usuario_principal} | Nº Teléfono:${telefono.numero_telefono} | Departamento:${telefono.departamento} | IMEI: No se ha añadido el IMEI`"></Qrcode>
+                    <Qrcode v-else :size=150 :value="`Nombre Dispositivo:${dispositivo.nombre_dispositivo} | Usuario: ${telefono.usuario_principal} | Nº Teléfono:${telefono.numero_telefono} | Departamento:${telefono.departamento} | IMEI: ${telefono.numero_serie}`"></Qrcode>
 
                     <div class="mt-5">
 
@@ -96,12 +97,6 @@
         telefono: Object,
 
     })
-
-    const page = usePage();
-
-    console.log(page.props.dispositivo);
-
-    
 
 
     let eliminar = async function(id) {
