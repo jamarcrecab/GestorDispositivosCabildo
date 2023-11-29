@@ -27,6 +27,7 @@ return new class extends Migration
             $table->date('fecha_recogida')->nullable(false);
             $table->date('fecha_alta')->nullable(true);
             $table->enum('estado',['Alta','Baja'])->nullable(false);
+            $table->enum('puesto',['Departamental','Jefe Servicio','Trabajador','Cargo Político','Cargo Confianza']);
             $table->mediumtext('foto_sim')->nullable(true);
             $table->mediumtext('firma')->nullable(true);
             $table->string('departamento')->nullable(false);

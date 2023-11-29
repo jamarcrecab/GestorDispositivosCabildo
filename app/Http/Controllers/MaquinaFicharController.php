@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dispositivo;
 use App\Models\MaquinaFichar;
+use App\Exports\MaquinasFicharExport;
 use Illuminate\Support\Facades\Request as RequestFacade;
 use Inertia\Inertia;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MaquinaFicharController extends Controller
 {
@@ -80,6 +82,7 @@ class MaquinaFicharController extends Controller
             'observaciones' => ['nullable']
         ]);
 
+
         $dispositivo = Dispositivo::where('id',$id);
 
         $dispositivo->update([
@@ -120,9 +123,14 @@ class MaquinaFicharController extends Controller
 
             'dispositivo' => Dispositivo::find($id),
             'maquinafichar' => MaquinaFichar::where('id_dispositivo',$id)->first(),
-            'app_url' => env('VUE_APP_URL')
         ]);
+    }
 
+    public function exportar()
+    {
+        return Excel::download(new MaquinasFicharExport,'maquinas-fichar.xlsx');
 
     }
+
+
 }

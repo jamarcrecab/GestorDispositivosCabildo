@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dispositivo;
 use App\Models\Telefono;
-use Illuminate\Support\Facades\Request as RequestFacade;
+use App\Exports\TelefonosExport;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Request as RequestFacade;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class TelefonosController extends Controller
@@ -25,10 +27,10 @@ class TelefonosController extends Controller
             'numero_telefono' => ['required'],
             'departamento' => ['required'],
             'correo' => ['nullable'],
+            'puesto' => ['required'],
             'observaciones' => ['nullable']
         
         ],
-    
         [
             'nombre_dispositivo.required' => 'El nombre de dispositivo es obligatorio',
             'tipo_dispositivo.required' => 'El tipo de dispositivo es obligatorio',
@@ -39,6 +41,7 @@ class TelefonosController extends Controller
             'usuario_principal' => 'El usuario es obligatorio',
             'numero_telefono.required' => 'El teléfono es obligatorio',
             'departamento.required' => 'El departamento es obligatorio',
+            'puesto.required' => 'El puesto es obligatorio'
         ]);
 
         $dispositivo = Dispositivo::create([
@@ -59,8 +62,9 @@ class TelefonosController extends Controller
             'usuario_principal' => $data['usuario_principal'],
             'numero_telefono' => $data['numero_telefono'],
             'departamento' => $data['departamento'],
-            'correo' => $data['correo']
- 
+            'correo' => $data['correo'],
+            'puesto' => $data['puesto'],
+
         ]);
 
         return redirect('/dispositivos')->with('mensaje','Teléfono añadido correctamente');
@@ -91,6 +95,7 @@ class TelefonosController extends Controller
             'numero_telefono' => ['required'],
             'departamento' => ['required'],
             'correo' => ['nullable'],
+            'puesto' => ['required'],
             'observaciones' => ['nullable']
 
         ]);
@@ -118,6 +123,7 @@ class TelefonosController extends Controller
             'numero_telefono' => $request->numero_telefono,
             'departamento' => $request->departamento,
             'correo' => $request->correo,
+            'puesto' => $request->puesto,
             'observaciones' => $request->observaciones
 
         ]);
@@ -140,9 +146,15 @@ class TelefonosController extends Controller
 
             'dispositivo' => Dispositivo::find($id),
             'telefono' => Telefono::where('id_dispositivo',$id)->first(),
-            'app_url' => env('VUE_APP_URL')
+            
         ]);
 
+
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new TelefonosExport,'telefonos.xlsx');
 
     }
 

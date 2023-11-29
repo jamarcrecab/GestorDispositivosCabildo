@@ -8,7 +8,7 @@
 
         <div class="container mx-auto overflow ">
 
-            <h3 class="text-3xl mt-12 font-bold text-neutral-800">{{ props.dispositivo.nombre_dispositivo }}</h3>
+            <h3 class="text-3xl mt-12 font-bold text-neutral-800">{{ dispositivo.nombre_dispositivo }}</h3>
 
             <div class="w-auto flex flex-col justify-start mb-10 mt-7 bg-gray-50 shadow-md p-10 md:flex-row w-2/3 lg:w-2/3 xl:w-2/3 2xl:w-2/3">
 
@@ -16,27 +16,27 @@
 
                     <p class="text-xl mt-4 text-teal-600">Tipo de Dispositivo</p>
 
-                    <p class="mt-1 text-2xl">{{ props.dispositivo.tipo_dispositivo }}</p>
+                    <p class="mt-1 text-2xl">{{ dispositivo.tipo_dispositivo }}</p>
 
                     <p class="text-xl mt-4 text-teal-600">Número de Serie</p>
 
-                    <p class="mt-1 text-2xl">{{ props.dispositivo.numero_serie }}</p>
+                    <p class="mt-1 text-2xl">{{ dispositivo.numero_serie }}</p>
 
                     <p class="mt-4 text-xl text-teal-600">Tipo de Conexión</p>
 
-                    <p class="mt-1 text-2xl">{{ props.dispositivo.conexion }}</p>
-
-                    <p class="mt-4 text-xl text-teal-600">Marca</p>
-
-                    <p  class="mt-1 text-2xl">{{ props.telefono.marca }}</p>
+                    <p class="mt-1 text-2xl">{{ dispositivo.conexion }}</p>
 
                     <p class="mt-4 text-xl text-teal-600">Zona Trabajo</p>
 
-                    <p  class="mt-1 text-2xl">{{ props.dispositivo.zona_trabajo }}</p>
+                    <p  class="mt-1 text-2xl">{{ dispositivo.zona_trabajo }}</p>
+
+                    <p class="mt-4 text-xl text-teal-600">Marca</p>
+
+                    <p  class="mt-1 text-2xl">{{ telefono.marca }}</p>
 
                     <p class="mt-4 text-xl text-teal-600">Modelo</p>
 
-                    <p  class="mt-1 text-2xl">{{ props.telefono.modelo }}</p>
+                    <p  class="mt-1 text-2xl">{{ telefono.modelo }}</p>
 
                 </div>
 
@@ -44,7 +44,7 @@
 
                     <p class="mt-4 text-xl text-teal-600">Usuario Principal</p>
 
-                    <p  class="mt-1 text-2xl">{{ props.telefono.usuario_principal }}</p>
+                    <p  class="mt-1 text-2xl">{{ telefono.usuario_principal }}</p>
 
                     <p class="mt-4 text-xl text-teal-600">Número de Teléfono</p>
 
@@ -52,20 +52,24 @@
 
                     <p class="mt-4 text-xl text-teal-600">Correo</p>
 
-                    <p v-if="props.telefono.correo == null" class="mt-1 text-2xl"> No tiene correo. </p>
+                    <p v-if="telefono.correo == null" class="mt-1 text-2xl"> No tiene correo. </p>
 
-                    <p v-else class="mt-1 text-2xl">{{ props.telefono.correo }}</p>
+                    <p v-else class="mt-1 text-2xl">{{ telefono.correo }}</p>
+
+                    <p class="text-xl mt-4 text-teal-600">Puesto</p>
+
+                    <p class="mt-1 text-2xl"> {{ telefono.puesto }}</p>
 
                     <p class="mt-4 text-xl text-teal-600">Observaciones</p>
 
-                    <p class="mt-1 text-2xl" v-if="props.telefono.observaciones">{{ props.telefono.observaciones }}</p>
+                    <p class="mt-1 text-2xl" v-if="telefono.observaciones">{{ telefono.observaciones }}</p>
 
                     <p class="mt-1 text-xl" v-else>No hay observaciones añadidas.</p>
 
                     <p class="mt-4 text-xl text-teal-600">QR</p>
 
-                    <Qrcode v-if="dispositivo.numero_serie == null" :size=150 :value="`Nombre Dispositivo:${dispositivo.nombre_dispositivo} | Usuario: ${telefono.usuario_principal} | Nº Teléfono:${telefono.numero_telefono} | Departamento:${telefono.departamento} | IMEI: No se ha añadido el IMEI`"></Qrcode>
-                    <Qrcode v-else :size=150 :value="`Nombre Dispositivo:${dispositivo.nombre_dispositivo} | Usuario: ${telefono.usuario_principal} | Nº Teléfono:${telefono.numero_telefono} | Departamento:${telefono.departamento} | IMEI: ${telefono.numero_serie}`"></Qrcode>
+                    <Qrcode v-if="dispositivo.numero_serie == null" :size=150 :value="`Nombre Dispositivo:${dispositivo.nombre_dispositivo} | Usuario: ${telefono.usuario_principal} | Nº Teléfono:${telefono.numero_telefono} | Departamento:${telefono.departamento} | IMEI: No se ha añadido el IMEI | Puesto:${telefono.puesto}`"></Qrcode>
+                    <Qrcode v-else :size=150 :value="`Nombre Dispositivo:${dispositivo.nombre_dispositivo} | Usuario: ${telefono.usuario_principal} | Nº Teléfono:${telefono.numero_telefono} | Departamento:${telefono.departamento} | IMEI: ${telefono.numero_serie} | Puesto:${telefono.puesto}`"></Qrcode>
 
                     <div class="mt-5">
 

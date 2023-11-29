@@ -19,6 +19,7 @@ class Telefono extends Model
         'usuario_principal',
         'numero_telefono',
         'departamento',
+        'puesto',
         'correo',
         
 

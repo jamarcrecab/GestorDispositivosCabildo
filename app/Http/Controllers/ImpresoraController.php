@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dispositivo;
 use App\Models\Impresora;
+use App\Exports\ImpresorasExport;
 use Illuminate\Support\Facades\Request as RequestFacade;
 use Inertia\Inertia;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ImpresoraController extends Controller
 {
@@ -135,11 +137,13 @@ class ImpresoraController extends Controller
 
             'dispositivo' => Dispositivo::find($id),
             'impresora' => Impresora::where('id_dispositivo',$id)->first(),
-            'app_url' => env('VUE_APP_URL')
         ]);
-
-
     }
 
+    public function exportar()
+    {
+        return Excel::download(new ImpresorasExport,'impresoras.xlsx');
+
+    }
 
 }

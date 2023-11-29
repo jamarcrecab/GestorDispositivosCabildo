@@ -8,7 +8,7 @@
 
         <div class="container mx-auto overflow ">
 
-            <h3 class="text-3xl mt-12 font-bold text-neutral-800">{{ props.dispositivo.nombre_dispositivo }}</h3>
+            <h3 class="text-3xl mt-12 font-bold text-neutral-800">{{ dispositivo.nombre_dispositivo }}</h3>
 
             <div class="w-auto flex flex-col justify-start mb-10 mt-7 bg-gray-50 shadow-md p-10 md:flex-row w-2/3 lg:w-2/3 xl:w-2/3 2xl:w-2/3">
 
@@ -60,14 +60,14 @@
 
                     <p class="mt-4 text-xl text-teal-600">QR</p>
 
-                    <Qrcode v-if="impresora.ip_secundaria == null" :size="150" :value="`Nombre Dispositivo:${dispositivo.nombre_dispositivo} | IP1:${impresora.ip_principal} | IP2:No hay IP Secundaria | Modelo:${impresora.modelo} | Marca:${impresora.marca} | Zona Trabajo:${dispositivo.zona_trabajo}`" />
+                    <Qrcode v-if="impresora.ip_secundaria == null" :size="150" :value="`Nombre impresora:${impresora.nombre_impresora} | IP1:${impresora.ip_principal} | IP2:No hay IP Secundaria | Modelo:${impresora.modelo} | Marca:${impresora.marca} | Zona Trabajo:${impresora.zona_trabajo}`" />
 
-                    <Qrcode v-else :size=150 :value="`Nombre Dispositivo:${dispositivo.nombre_dispositivo} | IP1:${impresora.ip_principal} | IP2: ${impresora.ip_secundaria} | Modelo:${impresora.modelo} | Marca:${impresora.marca} | Zona Trabajo:${dispositivo.zona_trabajo}`"/> 
+                    <Qrcode v-else :size=150 :value="`Nombre impresora:${impresora.nombre_impresora} | IP1:${impresora.ip_principal} | IP2: ${impresora.ip_secundaria} | Modelo:${impresora.modelo} | Marca:${impresora.marca} | Zona Trabajo:${impresora.zona_trabajo}`"/> 
 
                     <div class="mt-5">
 
-                        <Link :href="`/impresora/actualizar/${dispositivo.id}`" class="p-2 bg-teal-600 border border-transparent rounded-md font-semibold text-lg text-white hover:bg-teal-700 focus:bg-teal-700 active:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 ease-out duration-300">Editar</Link>
-                        <Link  @click="eliminar(dispositivo.id)" class="ml-4 p-2 bg-red-600 border border-transparent rounded-md font-semibold text-lg text-white hover:bg-red-700 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ease-out duration-300">Borrar</Link>
+                        <Link :href="`/impresora/actualizar/${impresora.id}`" class="p-2 bg-teal-600 border border-transparent rounded-md font-semibold text-lg text-white hover:bg-teal-700 focus:bg-teal-700 active:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 ease-out duration-300">Editar</Link>
+                        <Link  @click="eliminar(impresora.id)" class="ml-4 p-2 bg-red-600 border border-transparent rounded-md font-semibold text-lg text-white hover:bg-red-700 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ease-out duration-300">Borrar</Link>
 
                     </div>
 
@@ -90,19 +90,17 @@
 
     const props = defineProps({
 
-
-        dispositivo: Object,
         impresora: Object,
-        app_url: String,
-
+        dispositivo: Object,
     })
 
+    console.log(props.impresora);
 
     let eliminar = async function(id) {
 
         router.delete(`/impresoras/eliminar/${id}`,{
 
-        onBefore: () => confirm('¿Estás seguro de borrar este dispositivo?')
+        onBefore: () => confirm('¿Estás seguro de borrar este impresora?')
 });
 
 

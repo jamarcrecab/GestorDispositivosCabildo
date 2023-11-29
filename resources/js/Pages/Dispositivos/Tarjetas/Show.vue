@@ -76,6 +76,10 @@
 
                     <p class="mt-1 text-2xl"> {{ tarjeta.estado }}</p>
 
+                    <p class="text-xl mt-4 text-teal-600">Puesto</p>
+
+                    <p class="mt-1 text-2xl"> {{ tarjeta.puesto }}</p>
+
                     <p class="text-xl mt-4 text-teal-600">Foto Tarjeta SIM</p>
 
                     <img :src=" tarjeta.foto_sim " />

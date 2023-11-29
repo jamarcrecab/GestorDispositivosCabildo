@@ -22,7 +22,7 @@
                         <input v-model="form.conexion" type="text" class="block appearance-none w-35 bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-50 sm:w-50 xl:w-80 2xl:w-80"/>
 
                         <div v-if="form.errors.conexion" v-text="form.errors.conexion" class="block appearance-none w-35 mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80  md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
-                       
+                    
                     </div>
 
                     <div class="mt-4">
@@ -51,9 +51,6 @@
 
                         <div v-if="form.errors.marca" v-text="form.errors.marca" class="block appearance-none w-35 mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
                     </div>
-                </div>
-
-                <div>
 
                     <div class="mt-4">
                         <label for="modelo" class="text-lg mb-3">Modelo</label>
@@ -61,6 +58,9 @@
 
                         <div v-if="form.errors.modelo" v-text="form.errors.modelo" class="block appearance-none w-35 mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
                     </div>
+                </div>
+
+                <div>
 
                     <div class="mt-4">
                         <label for="usuario_principal" class="text-lg mb-3">Usuario Principal</label>
@@ -81,6 +81,16 @@
                         <input v-model="form.correo" type="text" class="block appearance-none w-35 bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-50 sm:w-50 xl:w-80 2xl:w-80"/>
 
                         <div v-if="form.errors.correo" v-text="form.errors.correo" class="block appearance-none w-35 mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
+                    </div>
+
+                    <div class="mt-4">
+                        <div class="mt-4">
+                            <label for="puesto" class="text-lg mb-3">Puesto</label>
+                            <select v-model="form.puesto" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 xl:w-80 2xl:w-80">
+                                <option v-for="puesto in puestos" :key="puesto.id" :value="puesto.texto"> {{ puesto.texto }}</option>
+                            </select>
+                            <div v-if="form.errors.puesto" v-text="form.errors.puesto" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
+                        </div>
                     </div>
 
                     <div class="mt-4">
@@ -114,6 +124,16 @@
     import PrimaryButton from '../../../Components/PrimaryButton.vue';
     import { onMounted, ref } from 'vue';
 
+
+    const puestos = ref([
+
+        {id:1, texto: 'Departamental'},
+        {id:2, texto: 'Jefe Servicio'},
+        {id:3, texto: 'Trabajador'},
+        {id:4, texto: 'Cargo Político'},
+        {id:5, texto: 'Cargo Confianza'},
+
+    ]);
 
     const departamentos = ref([]);
     const zonas = ref([]);
@@ -167,6 +187,7 @@
     usuario_principal:props.telefono.usuario_principal,
     numero_telefono:props.telefono.numero_telefono,
     correo:props.telefono.correo,
+    puesto:props.telefono.puesto,
     observaciones:props.telefono.observaciones,
 });
 

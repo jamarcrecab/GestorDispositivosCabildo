@@ -74,22 +74,22 @@
 
 
     const zonas = ref([]);
-
-    const getZonas = async () => {
-
-    await axios.get('/api/zonas').then(response => {
-
-    zonas.value = response.data;
-
-    });
-
-
-    onMounted(() => {
-
-        getZonas();
-
-        }) 
-    };
+    
+        const getZonas = async () => {
+    
+            await axios.get('/api/zonas').then(response => {
+    
+            zonas.value = response.data;
+    
+            });
+    
+        };
+    
+        onMounted(() => {
+    
+            getZonas();
+    
+        });
 
 
     let props = defineProps({
@@ -109,7 +109,6 @@
     zona_trabajo:props.dispositivo.zona_trabajo,
     ip_principal:props.maquinafichar.ip_principal,
     observaciones:props.maquinafichar.observaciones
-   
     
 });
 

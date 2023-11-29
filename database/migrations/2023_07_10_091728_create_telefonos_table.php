@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('numero_telefono')->nullable(false);
             $table->string('departamento')->nullable(false);
             $table->string('correo')->nullable(true);
+            $table->enum('puesto',['Departamental','Jefe Servicio','Trabajador','Cargo Político','Cargo Confianza']);
             $table->text('observaciones')->nullable(true);
             $table->timestamps();
 

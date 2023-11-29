@@ -26,6 +26,7 @@ class Tarjeta extends Model
         'fecha_alta',
         'estado',
         'departamento',
+        'puesto',
         'foto_sim',
         'firma',
         

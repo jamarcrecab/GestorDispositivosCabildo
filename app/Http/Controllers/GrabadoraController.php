@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dispositivo;
 use App\Models\Grabadora;
+use App\Exports\GrabadorasExport;
 use Illuminate\Support\Facades\Request as RequestFacade;
 use Inertia\Inertia;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GrabadoraController extends Controller
 {
@@ -22,7 +24,6 @@ class GrabadoraController extends Controller
             'conexion' => ['required'],
             'zona_trabajo' => ['required'],
             'modelo' => ['required'],
-            'ip_principal' => ['required'],
             'observaciones' => ['nullable']
 
         ],
@@ -33,7 +34,6 @@ class GrabadoraController extends Controller
             'zona_trabajo.required' => 'La zona de trabajo es obligatoria',
             'conexion.required' => 'La conexión es obligatoria',
             'modelo.required' => 'El modelo es obligatorio',
-            'ip_principal.required' => 'La IP Principal es obligatoria'
         ]);
 
         $dispositivo = Dispositivo::create([
@@ -96,7 +96,7 @@ class GrabadoraController extends Controller
 
         ]);
 
-        $grabadora = Grabadora::where('id',$id);
+        $grabadora = Grabadora::where('id_dispositivo',$id);
 
         $grabadora->update([
 
@@ -110,9 +110,9 @@ class GrabadoraController extends Controller
 
     }
 
-    public function eliminar($id){
+    public function delete($id){
 
-        Dispositivo::find($id)->delete();
+       Dispositivo::find($id)->delete();
 
         return redirect('/dispositivos')->with('mensaje','Grabadora eliminada correctamente');
 
@@ -124,9 +124,12 @@ class GrabadoraController extends Controller
 
             'dispositivo' => Dispositivo::find($id),
             'grabadora' => Grabadora::where('id_dispositivo',$id)->first(),
-            'app_url' => env('VUE_APP_URL')
         ]);
+    }
 
+    public function exportar()
+    {
+        return Excel::download(new GrabadorasExport,'grabadoras.xlsx');
 
     }
 }

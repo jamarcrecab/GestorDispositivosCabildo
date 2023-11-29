@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tarjeta;
+use App\Exports\TarjetasExport;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Request as RequestFacade;
 use PDF;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TarjetasController extends Controller
 {
@@ -31,6 +33,7 @@ class TarjetasController extends Controller
             'fecha_alta' => ['required'],
             'estado' => ['required'],
             'departamento' => ['required'],
+            'puesto' => ['required'],
             'foto_sim' => ['nullable'],
             'firma' => ['required']
 
@@ -50,6 +53,7 @@ class TarjetasController extends Controller
             'fecha_recogida.required' => 'La fecha de recogida es obligatoria',
             'estado.required' => 'El estado es obligatorio',
             'departamento.required' => 'El departamento es obligatorio',
+            'puesto.required' => 'El puesto es obligatorio',
             
 
         ]);
@@ -71,6 +75,7 @@ class TarjetasController extends Controller
             'fecha_alta' => $data['fecha_alta'],
             'estado' => $data['estado'],
             'departamento' => $data['departamento'],
+            'puesto' => $data['puesto'],
             'foto_sim' => $data['foto_sim'],
             'firma' => $data['firma']
         ]);
@@ -107,6 +112,7 @@ class TarjetasController extends Controller
             'fecha_alta' => ['required'],
             'estado' => ['required'],
             'departamento' => ['required'],
+            'puesto' => ['required'],
             'foto_sim' => ['nullable'],
             'firma' => ['nullable'],
             
@@ -127,6 +133,7 @@ class TarjetasController extends Controller
             'fecha_recogida.required' => 'La fecha de recogida es obligatoria',
             'estado.required' => 'El estado es obligatorio',
             'departamento.required' => 'El departamento es obligatorio',
+            'puesto.required' => 'El puesto es obligatorio',
 
         ]);
 
@@ -148,6 +155,7 @@ class TarjetasController extends Controller
             'fecha_recogida' => $request->fecha_recogida,
             'fecha_alta' => $request->fecha_alta, 
             'departamento' => $request->departamento,
+            'puesto' => $request->puesto,
             'foto_sim' => $request->foto_sim,
             'firma' => $request->firma
             
@@ -176,6 +184,12 @@ class TarjetasController extends Controller
         Tarjeta::find($id)->delete();
 
         return redirect('/dispositivos')->with('mensaje','Tarjeta eliminada correctamente');
+
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new TarjetasExport,'tarjetas.xlsx');
 
     }
 

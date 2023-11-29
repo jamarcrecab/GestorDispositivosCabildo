@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dispositivo;
 use App\Models\Ordenador;
+use App\Exports\OrdenadoresExport;
 use Illuminate\Support\Facades\Request as RequestFacade;
 use Inertia\Inertia;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrdenadorController extends Controller
 {
@@ -212,9 +214,12 @@ class OrdenadorController extends Controller
 
             'dispositivo' => Dispositivo::find($id),
             'ordenador' => Ordenador::where('id_dispositivo',$id)->first(),
-            'app_url' => env('VUE_APP_URL'),
         ]);
+    }
 
+    public function exportar()
+    {
+        return Excel::download(new OrdenadoresExport,'ordenadores.xlsx');
 
     }
 }
