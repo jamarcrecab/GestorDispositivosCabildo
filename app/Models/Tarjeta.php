@@ -28,7 +28,6 @@ class Tarjeta extends Model
         'departamento',
         'puesto',
         'foto_sim',
-        'firma',
         
     ];
 
@@ -36,6 +35,12 @@ class Tarjeta extends Model
 
         'created_at',
         'updated_at'
+
+    ];
+
+    protected $casts = [
+
+        'created_at' => 'datetime: d-m-Y',
 
     ];
 

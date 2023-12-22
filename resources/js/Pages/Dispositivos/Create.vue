@@ -529,6 +529,13 @@
                     </div>
 
                     <div class="mt-4">
+                        <label for="FotoTelefono" class="text-lg mb-3">Foto Teléfono</label>
+                        <br>
+                        <input type="file" class="w-auto" @change="subidaImagenTelefono" />
+                        <div v-if="formTelefonos.errors.foto_telefono" v-text="formTelefonos.errors.foto_telefono" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80  md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
+                    </div>
+
+                    <div class="mt-4">
                         <label for="observaciones" class="text-lg mb-3">Observaciones (Opcional)</label>
                         <textarea name="observaciones" v-model="formTelefonos.observaciones" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-50 sm:w-50 xl:w-80 2xl:w-80" placeholder="Deja aquí las observaciones..."></textarea>
 
@@ -617,6 +624,10 @@
                         <div v-if="formTarjeta.errors.puk" v-text="formTarjeta.errors.puk" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
                     </div>
 
+                </div>
+
+                <div class="pr-20">
+
                     <div class="mt-4">
 
                         <label for="tipo_contrato" class="text-lg mb-3">Tipo Contrato</label>
@@ -624,10 +635,6 @@
 
                         <div v-if="formTarjeta.errors.tipo_contrato" v-text="formTarjeta.errors.tipo_contrato" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
                     </div>
-
-                </div>
-
-                <div class="pr-20">
 
                     <div class="mt-4">
 
@@ -684,24 +691,15 @@
                             <select v-model="formTarjeta.puesto" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 xl:w-80 2xl:w-80">
                                 <option v-for="puesto in puestos" :key="puesto.id" :value="puesto.texto"> {{ puesto.texto }}</option>
                             </select>
-                            <div v-if="formTelefonos.errors.puesto" v-text="formTelefonos.errors.puesto" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
+                            <div v-if="formTarjeta.errors.puesto" v-text="formTarjeta.errors.puesto" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
                         </div>
                     </div>
 
                     <div class="mt-4">
                         <label for="SIM" class="text-lg mb-3">Foto Tarjeta SIM</label>
-                        <input type="file" class="w-auto" @change="subidaImagen" />
+                        <br>
+                        <input type="file" class="w-auto" @change="subidaImagenTarjeta" />
                         <div v-if="formTarjeta.errors.foto_sim" v-text="formTarjeta.errors.foto_sim" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80  md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
-                    </div>
-
-
-                    <div class="mt-4">
-                        <label for="firma" class="text-lg mb-3">Firma</label>
-                        <VPerfectSignature  class="border rounded-lg border-gray-400" width="330px" height="180px" :stroke-options="strokeOptions" ref="signaturePad" />
-                        <div class="flex flex-row gap-24">
-                        <a v-on:click="limpiarFirma" class="hover:cursor-pointer">Limpiar Hueco</a>
-                        <a v-on:click="guardarFirma" :v-model="formTarjeta.firma" class="hover:cursor-pointer">Guardar Firma</a>
-                        </div>
                     </div>
 
                     <div class="mt-5">
@@ -727,7 +725,6 @@
     import { useForm,Head} from '@inertiajs/vue3';
     import  Layout  from '../../Layouts/Layout.vue';
     import { onMounted, ref } from 'vue';
-    import { VPerfectSignature } from 'v-perfect-signature';
     import { useToastr } from '../../toastr.js';
     
     const tipodispositivo = ref('Seleccionar');
@@ -767,10 +764,17 @@
 
     };
 
-   const imagenbase64 = ref('');
+    onMounted(() => {
+
+        getZonas();
+        getDepartamentos();
+
+    }); 
+
+    const imagenbase64 = ref('');
 
 
-    const subidaImagen = (event) => {
+    const subidaImagenTarjeta = (event) => {
 
         const imagen = event.target.files[0];
 
@@ -791,46 +795,30 @@
 
     }
 
-    onMounted(() => {
-
-        getZonas();
-        getDepartamentos();
-
-    }); 
-
     
 
-  
 
-/*--------------------------------------------------------------------------------*/
+    const subidaImagenTelefono = (event) => {
 
-const strokeOptions = {
-    
-    size: 6,
-    thinning: 0.75,
-    smoothing: 0.5,
-    streamline: 0.5,
-    
-  };
+        const imagen = event.target.files[0];
 
+        if(imagen){
 
-  function guardarFirma() {
+            const reader = new FileReader();
 
-    
-    const data = signaturePad.value.toDataURL("image/png");
-    formTarjeta.firma = data;
+            reader.onload = () => {
 
-    toastr.info("Firma guardada correctamente");
+                imagenbase64.value = reader.result;
 
-  }
+            }
 
-    
-  function limpiarFirma() {
+            reader.readAsDataURL(imagen);
+        }
 
-    signaturePad.value.clear(); 
-    
+        formTelefonos.foto_telefono = imagenbase64;
 
-  }
+    }
+
 
 /*--------------------------------------------------------------------------------*/
 
@@ -904,6 +892,7 @@ const strokeOptions = {
             correo:'',
             puesto:'',
             observaciones:'',
+            foto_telefono:'',
         
         })
 
@@ -937,9 +926,6 @@ const strokeOptions = {
             estado:'',
             puesto:'',
             foto_sim:'',
-            firma:'',
-            
-
             });
 
     //Función para crear un nuevo registro de ordenador
@@ -980,9 +966,6 @@ const strokeOptions = {
     }
 
     let submitTarjeta = () => {
-
-
-        onBefore: () => console.log(formTarjeta.foto_sim);
 
         formTarjeta.post('/tarjeta/crear');
 

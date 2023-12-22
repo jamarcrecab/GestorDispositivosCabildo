@@ -21,8 +21,7 @@ class Telefono extends Model
         'departamento',
         'puesto',
         'correo',
-        
-
+        'foto_telefono'
     ];
 
     protected $hidden = [

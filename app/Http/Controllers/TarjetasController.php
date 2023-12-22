@@ -35,8 +35,6 @@ class TarjetasController extends Controller
             'departamento' => ['required'],
             'puesto' => ['required'],
             'foto_sim' => ['nullable'],
-            'firma' => ['required']
-
         ],
         [
 
@@ -77,7 +75,6 @@ class TarjetasController extends Controller
             'departamento' => $data['departamento'],
             'puesto' => $data['puesto'],
             'foto_sim' => $data['foto_sim'],
-            'firma' => $data['firma']
         ]);
 
         return redirect('/dispositivos')->with('mensaje','Tarjeta añadida correctamente');
@@ -114,8 +111,6 @@ class TarjetasController extends Controller
             'departamento' => ['required'],
             'puesto' => ['required'],
             'foto_sim' => ['nullable'],
-            'firma' => ['nullable'],
-            
 
         ],
         [
@@ -157,7 +152,6 @@ class TarjetasController extends Controller
             'departamento' => $request->departamento,
             'puesto' => $request->puesto,
             'foto_sim' => $request->foto_sim,
-            'firma' => $request->firma
             
 
         ]);

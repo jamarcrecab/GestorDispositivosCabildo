@@ -96,6 +96,7 @@ Route::get('/telefono/mostrar/{id}',[TelefonosController::class,'show']);
 Route::get('/telefono/actualizar/{id}',[TelefonosController::class,'edit']);
 Route::post('/telefono/actualizar/{id}',[TelefonosController::class,'update']);
 Route::delete('/telefono/eliminar/{id}',[TelefonosController::class,'delete']);
+Route::get('/telefono/pdf/{id}',[PDFController::class,'generatePDFTelefonos']);
 Route::get('/telefono/exportar',[TelefonosController::class,'exportar']);
 
 
@@ -105,7 +106,7 @@ Route::get('/tarjeta/mostrar/{id}',[TarjetasController::class,'show']);
 Route::get('/tarjeta/actualizar/{id}',[TarjetasController::class,'edit']);
 Route::post('/tarjeta/actualizar/{id}',[TarjetasController::class,'update']);
 Route::delete('/tarjeta/eliminar/{id}',[TarjetasController::class,'delete']);
-Route::get('/tarjeta/pdf/{id}',[PDFController::class,'generatePDF']);
+Route::get('/tarjeta/pdf/{id}',[PDFController::class,'generatePDFTarjetas']);
 Route::get('/tarjeta/exportar',[TarjetasController::class,'exportar']);
 
 });

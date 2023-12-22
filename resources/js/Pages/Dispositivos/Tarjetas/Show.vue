@@ -46,10 +46,6 @@
 
                     <p class="mt-1 text-2xl"> {{ tarjeta.departamento }}</p>
 
-                    <p class="text-xl mt-4 text-teal-600">Firma</p>
-
-                    <img :src=" tarjeta.firma " />
-
                 </div>
 
                 <div class="pr-20">

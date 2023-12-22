@@ -141,25 +141,26 @@
                         
                     </div>
 
+                    <div class="mt-4">
+                        <div class="mt-4">
+                            <label for="puesto" class="text-lg mb-3">Puesto</label>
+                            <select v-model="form.puesto" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 xl:w-80 2xl:w-80">
+                                <option v-for="puesto in puestos" :key="puesto.id" :value="puesto.texto"> {{ puesto.texto }}</option>
+                            </select>
+                            <div v-if="form.errors.puesto" v-text="form.errors.puesto" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
+                        </div>
+                    </div>
+
                     <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 p-5 rounded relative w-full md: w-1/3 lg:w-2/3 mt-4" role="alert">
-                <strong class="font-bold">¡Importante! </strong>
-                <span class="block sm:inline">Aunque salgan los campos Foto Tarjeta SIM y Firma sin rellenar, no hace falta editarlos si previamente subieron la foto y la firma cuando se creó.</span>
-            </div>
+                        <strong class="font-bold">¡Importante! </strong>
+                        <span class="block sm:inline">Aunque salga el campo Foto Tarjeta SIM sin rellenar, no hace falta editarlo si previamente se subió la foto.</span>
+                    </div>
 
                     <div class="mt-4">
                         <label for="SIM" class="text-lg mb-3">Foto Tarjeta SIM</label>
+                        <br>
                         <input type="file" class="w-auto" @change="subidaImagen" />
                         <div v-if="form.errors.foto_sim" v-text="form.errors.foto_sim" class="block appearance-none w-35 mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80  md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
-                    </div>
-
-
-                    <div class="mt-4 w-20 xl:w-80 2xl:w-80">
-                        <label for="firma" class="text-lg mb-3">Firma</label>
-                        <VPerfectSignature  class="border rounded-lg border-gray-400" :stroke-options="strokeOptions" ref="signaturePad" />
-                        <div class="flex flex-row gap-24">
-                        <a v-on:click="limpiarFirma" class="hover:cursor-pointer">Limpiar Hueco</a>
-                        <a v-on:click="guardarFirma" :v-model="form.firma" class="hover:cursor-pointer">Guardar Firma</a>
-                        </div>
                     </div>
 
                     <div class="mt-5">
@@ -184,8 +185,6 @@
     import { useForm,Head} from '@inertiajs/vue3';
     import { onMounted, ref } from 'vue';
     import  Layout  from '../../../Layouts/Layout.vue';
-    import { VPerfectSignature } from 'v-perfect-signature';
-    import { useToastr } from '../../../toastr';
 
     let props = defineProps({
 
@@ -193,10 +192,17 @@
     });
 
     const departamentos = ref([]);
-    const signaturePad = ref([]);
-    const toastr = useToastr();
-
     const imagenbase64 = ref('');
+
+    const puestos = ref([
+
+        {id:1, texto: 'Departamental'},
+        {id:2, texto: 'Jefe Servicio'},
+        {id:3, texto: 'Trabajador'},
+        {id:4, texto: 'Cargo Político'},
+        {id:5, texto: 'Cargo Confianza'},
+
+    ]);
 
 
     const subidaImagen = (event) => {
@@ -236,34 +242,6 @@
 
     });
     
-    const strokeOptions = {
-    
-    size: 6,
-    thinning: 0.75,
-    smoothing: 0.5,
-    streamline: 0.5,
-    
-  };
-
-
-  function guardarFirma() {
-
-    const data = signaturePad.value.toDataURL("image/png");
-    form.firma = data;
-
-    toastr.info("Firma guardada correctamente");
-
-
-  }
-   
-  function limpiarFirma() {
-
-    signaturePad.value.clear(); 
-    
-
-  }
-    
-
 
     let form = useForm({
 
@@ -282,9 +260,8 @@
     fecha_alta:props.tarjeta.fecha_alta,
     estado:props.tarjeta.estado,
     departamento:props.tarjeta.departamento,
+    puesto: props.tarjeta.puesto,
     foto_sim:props.tarjeta.foto_sim,
-    firma:props.tarjeta.firma
-
     });
 
 

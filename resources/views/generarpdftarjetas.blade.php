@@ -64,6 +64,9 @@ p.P-rrafo-b-sico {
 }
 table.TableOverride-1 {
 	border-collapse:collapse;
+	width:600px;
+	height:900px;
+	margin-top:4px;
 }
 td.CellOverride-1 {
 	border-bottom-color:#008295;
@@ -112,22 +115,22 @@ span.CharOverride-4 {
 	font-weight:normal;
 }
 col._idGenTableRowColumn-1 {
-	width:162px;
+	width:180px;
 }
 col._idGenTableRowColumn-2 {
-	width:79px;
+	width:85px;
 }
 col._idGenTableRowColumn-3 {
-	width:82px;
+	width:88px;
 }
 col._idGenTableRowColumn-4 {
-	width:158px;
+	width:162px;
 }
 tr._idGenTableRowColumn-5 {
-	height:34px;
+	height:40px;
 }
 tr._idGenTableRowColumn-6 {
-	height:156px;
+	height:162px;
 }
 #_idContainer001 {
 	-ms-transform:translate(0.000px,1.417px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
@@ -167,6 +170,11 @@ tr._idGenTableRowColumn-6 {
 	position:relative;
 	width:276px;
 }
+#impreso_telefonos{
+
+	width: 100%;
+
+}
 img._idGenObjectAttribute-1 {
 	height:100.00%;
 	min-width:100%;
@@ -185,27 +193,14 @@ div._idGenObjectLayout-1 {
 		<title>Generar PDF</title>
 	</head>
 	<body id="impreso_telefonos">
-		<div class="_idGenObjectLayout-1">
-			<div id="_idContainer003">
-				<div id="_idContainer001" class="_idGenObjectStyleOverride-1">
-				<img src="{{ $link }}">
-				</div>
-			</div>
-		</div>
 		<div id="_idContainer000" class="Marco-de-texto-b-sico">
 			<p class="P-rrafo-b-sico ParaOverride-1"><span class="CharOverride-1">SERVICIO DE TELECOMUNICACIONES</span></p>
 			<p class="P-rrafo-b-sico ParaOverride-2"><span class="CharOverride-2">Nuevas Tecnologías</span></p>
 			<table id="table001" class="Tabla-b-sica TableOverride-1">
-				<colgroup>
-					<col class="_idGenTableRowColumn-1" />
-					<col class="_idGenTableRowColumn-2" />
-					<col class="_idGenTableRowColumn-3" />
-					<col class="_idGenTableRowColumn-4" />
-				</colgroup>
 				<tbody>
 					<tr class="Tabla-b-sica _idGenTableRowColumn-5">
 						<td class="Tabla-b-sica CellOverride-1" colspan="3">
-							<p class="P-rrafo-b-sico"><span class="CharOverride-3">Nombre y apellidos</span></p>
+							<p class="P-rrafo-b-sico"><span class="CharOverride-3">Nombre y apellidos {{$nombre }} </span></p>
 							<p>{{ $nombre }} {{ $apellidos }} </p>
 						</td>
 						<td class="Tabla-b-sica CellOverride-1">
@@ -272,11 +267,10 @@ div._idGenObjectLayout-1 {
 					<tr class="Tabla-b-sica _idGenTableRowColumn-6">
 						<td class="Tabla-b-sica CellOverride-1" colspan="2">
 							<p class="P-rrafo-b-sico"><span class="CharOverride-3">Firma</span></p>
-							<img src="{{ $firma }}" width="120" height="70" />
 						</td>
 						<td class="Tabla-b-sica CellOverride-1" colspan="2">
 							<p class="P-rrafo-b-sico"><span class="CharOverride-3">Foto tarjeta</span></p>
-							<img src="{{ $foto_sim }}" width="140" height="180" />
+							<img src="{{ $foto_sim }}" width="140" height="280" />
 						</td>
 					</tr>
 				</tbody>

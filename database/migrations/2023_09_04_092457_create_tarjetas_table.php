@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('apellidos')->nullable(false);
             $table->string('correo')->nullable(false);
             $table->string('dni')->nullable(false);
-            $table->integer('icc')->nullable(false);
+            $table->bigInteger('icc')->nullable(false);
             $table->integer('telefono')->nullable(false);
             $table->integer('extension')->nullable(false);
             $table->integer('pin')->nullable(false);
@@ -29,7 +29,6 @@ return new class extends Migration
             $table->enum('estado',['Alta','Baja'])->nullable(false);
             $table->enum('puesto',['Departamental','Jefe Servicio','Trabajador','Cargo Político','Cargo Confianza']);
             $table->mediumtext('foto_sim')->nullable(true);
-            $table->mediumtext('firma')->nullable(true);
             $table->string('departamento')->nullable(false);
             $table->timestamps();
         });

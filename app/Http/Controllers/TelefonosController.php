@@ -28,11 +28,13 @@ class TelefonosController extends Controller
             'departamento' => ['required'],
             'correo' => ['nullable'],
             'puesto' => ['required'],
+            'foto_telefono' => ['nullable'],
             'observaciones' => ['nullable']
         
         ],
         [
             'nombre_dispositivo.required' => 'El nombre de dispositivo es obligatorio',
+            'nombre_dispositivo.unique' => 'Este nombre de dispositivo ya está cogido',
             'tipo_dispositivo.required' => 'El tipo de dispositivo es obligatorio',
             'conexion.required' => 'La conexión es obligatoria',
             'marca.required' => 'La marca es obligatoria',
@@ -64,6 +66,8 @@ class TelefonosController extends Controller
             'departamento' => $data['departamento'],
             'correo' => $data['correo'],
             'puesto' => $data['puesto'],
+            'foto_telefono' => $data['foto_telefono'],
+            'observaciones' => $data['observaciones']
 
         ]);
 
@@ -124,6 +128,7 @@ class TelefonosController extends Controller
             'departamento' => $request->departamento,
             'correo' => $request->correo,
             'puesto' => $request->puesto,
+            'foto_telefono' => $request->foto_telefono,
             'observaciones' => $request->observaciones
 
         ]);
