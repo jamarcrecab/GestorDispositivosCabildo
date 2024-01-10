@@ -73,7 +73,7 @@
             </table>
         </div>
 
-        <div class="fixed bottom-0 left-10 mb-16">
+        <div class="absolute bottom-0 left-05 mb-16">
 
             <Link
             :is="link.url ? 'Link' : 'span'"
