@@ -271,8 +271,8 @@ div._idGenObjectLayout-1 {
 					</tr>
 					<tr class="Tabla-b-sica _idGenTableRowColumn-6">
 						<td class="Tabla-b-sica CellOverride-1" colspan="4">
-							<p class="P-rrafo-b-sico"><span class="CharOverride-3">Observaciones</span></p>
-							<p class="Hueco-Firma"> {{ $observaciones }} </p>
+							<p class="P-rrafo-b-sico"><span class="CharOverride-3">Foto Teléfono</span></p>
+							<p class="Hueco-Firma"> {{ $foto_telefono }} </p>
 						</td>
 					</tr>
 					<tr class="Tabla-b-sica _idGenTableRowColumn-6">

@@ -28,8 +28,8 @@ class TelefonosController extends Controller
             'departamento' => ['required'],
             'correo' => ['nullable'],
             'puesto' => ['required'],
-            'foto_telefono' => ['nullable'],
-            'observaciones' => ['nullable']
+            'observaciones' => ['nullable'],
+            'foto_telefono' => ['nullable']
         
         ],
         [
@@ -100,6 +100,7 @@ class TelefonosController extends Controller
             'departamento' => ['required'],
             'correo' => ['nullable'],
             'puesto' => ['required'],
+            'foto_telefono' => ['nullable'],
             'observaciones' => ['nullable']
 
         ]);

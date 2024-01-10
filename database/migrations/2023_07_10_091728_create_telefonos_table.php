@@ -23,9 +23,8 @@ return new class extends Migration
             $table->string('correo')->nullable(true);
             $table->enum('puesto',['Departamental','Jefe Servicio','Trabajador','Cargo Político','Cargo Confianza']);
             $table->text('observaciones')->nullable(true);
-            $table->mediumtext('foto_telefono')->nullable(false);
+            $table->mediumtext('foto_telefono')->nullable(true);
             $table->timestamps();
-
             $table->foreign('nombre_dispositivo')->references('nombre_dispositivo')->on('dispositivos')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_dispositivo')->references('id')->on('dispositivos')->onUpdate('cascade')->onDelete('cascade');
         });

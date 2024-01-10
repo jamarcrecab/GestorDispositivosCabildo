@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('apellidos')->nullable(false);
             $table->string('correo')->nullable(false);
             $table->string('dni')->nullable(false);
-            $table->bigInteger('icc')->nullable(false);
+            $table->string('icc')->nullable(false);
             $table->integer('telefono')->nullable(false);
             $table->integer('extension')->nullable(false);
             $table->integer('pin')->nullable(false);

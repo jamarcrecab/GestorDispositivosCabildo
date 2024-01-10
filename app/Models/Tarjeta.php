@@ -27,7 +27,7 @@ class Tarjeta extends Model
         'estado',
         'departamento',
         'puesto',
-        'foto_sim',
+        'foto_sim'
         
     ];
 

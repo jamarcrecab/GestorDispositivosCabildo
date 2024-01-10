@@ -92,27 +92,16 @@
                             <div v-if="form.errors.puesto" v-text="form.errors.puesto" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
                         </div>
                     </div>
-
-                    <div class="mt-4">
-                        <div class="mt-4">
-                            <label for="puesto" class="text-lg mb-3">Puesto</label>
-                            <select v-model="form.puesto" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 xl:w-80 2xl:w-80">
-                                <option v-for="puesto in puestos" :key="puesto.id" :value="puesto.texto"> {{ puesto.texto }}</option>
-                            </select>
-                            <div v-if="form.errors.puesto" v-text="form.errors.puesto" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
-                        </div>
-                    </div>
-
                     <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 p-5 rounded relative w-full md: w-1/3 lg:w-2/3 mt-4" role="alert">
                         <strong class="font-bold">¡Importante! </strong>
                         <span class="block sm:inline">Aunque salga el campo Foto Tarjeta Teléfono sin rellenar, no hace falta editarlo si previamente se subió la foto.</span>
                     </div>
 
                     <div class="mt-4">
-                        <label for="SIM" class="text-lg mb-3">Foto Tarjeta SIM</label>
+                        <label for="SIM" class="text-lg mb-3">Foto Tarjeta Teléfono</label>
                         <br>
                         <input type="file" class="w-auto" @change="subidaImagen" />
-                        <div v-if="form.errors.foto_sim" v-text="form.errors.foto_sim" class="block appearance-none w-35 mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80  md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
+                        <div v-if="form.errors.foto_telefono" v-text="form.errors.foto_telefono" class="block appearance-none w-35 mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80  md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
                     </div>
 
                     <div class="mt-4">
@@ -178,29 +167,29 @@
         departamentos.value = response.data;
 
     });
+    
+    }
 
     const subidaImagen = (event) => {
 
-        const imagen = event.target.files[0];
+    const imagen = event.target.files[0];
 
-        if(imagen){
+    if(imagen){
 
-            const reader = new FileReader();
+        const reader = new FileReader();
 
-            reader.onload = () => {
+        reader.onload = () => {
 
-                imagenbase64.value = reader.result;
-
-            }
-
-            reader.readAsDataURL(imagen);
-        }
-
-        form.foto_telefono = imagenbase64;
+            imagenbase64.value = reader.result;
 
         }
 
-    };
+        reader.readAsDataURL(imagen);
+    }
+
+    form.foto_sim = imagenbase64;
+
+    }
 
     onMounted(() => {
 
@@ -242,7 +231,5 @@ let submit= () => {
     form.post(`/telefono/actualizar/${props.dispositivo.id}`);
 
 }
-
-console.log(props.telefono);
 
 </script>
