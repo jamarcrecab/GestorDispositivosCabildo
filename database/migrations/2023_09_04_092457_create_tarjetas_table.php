@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('icc')->nullable(false);
             $table->integer('telefono')->nullable(false);
             $table->integer('extension')->nullable(false);
-            $table->integer('pin')->nullable(false);
-            $table->integer('puk')->nullable(false);
+            $table->string('pin')->nullable(false);
+            $table->string('puk')->nullable(false);
             $table->string('tipo_contrato')->nullable(false);
             $table->string('servicios_adicionales')->nullable(false);
             $table->date('fecha_recogida')->nullable(false);

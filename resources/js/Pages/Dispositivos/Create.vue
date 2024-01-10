@@ -506,7 +506,7 @@
 
                     <div class="mt-4">
                         <label for="telefono" class="text-lg mb-3">Número de Teléfono</label>
-                        <input v-model="formTelefonos.numero_telefono" type="tel" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-50 sm:w-50 xl:w-80 2xl:w-80"/>
+                        <input v-model="formTelefonos.numero_telefono" type="text" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-50 sm:w-50 xl:w-80 2xl:w-80"/>
 
                         <div v-if="formTelefonos.errors.numero_telefono" v-text="formTelefonos.errors.numero_telefono" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
                     </div>
@@ -595,7 +595,7 @@
                     <div class="mt-4">
 
                         <label for="telefono" class="text-lg mb-3">Teléfono</label>
-                        <input v-model="formTarjeta.telefono" type="number" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-80 sm:w-50 xl:w-80 2xl:w-80"/>
+                        <input v-model="formTarjeta.telefono" type="text" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-80 sm:w-50 xl:w-80 2xl:w-80"/>
 
                         <div v-if="formTarjeta.errors.telefono" v-text="formTarjeta.errors.telefono" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
                     </div>
@@ -603,7 +603,7 @@
                     <div class="mt-4">
 
                         <label for="extension" class="text-lg mb-3">Extensión</label>
-                        <input v-model="formTarjeta.extension" type="number" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-80 sm:w-50 xl:w-80 2xl:w-80"/>
+                        <input v-model="formTarjeta.extension" type="text" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-80 sm:w-50 xl:w-80 2xl:w-80"/>
 
                         <div v-if="formTarjeta.errors.extension" v-text="formTarjeta.errors.extension" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
                     </div>
@@ -611,7 +611,7 @@
                     <div class="mt-4">
 
                         <label for="pin" class="text-lg mb-3">PIN</label>
-                        <input v-model="formTarjeta.pin" type="number" maxlength="4" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-80 sm:w-50 xl:w-80 2xl:w-80"/>
+                        <input v-model="formTarjeta.pin" type="text" maxlength="4" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-80 sm:w-50 xl:w-80 2xl:w-80"/>
 
                         <div v-if="formTarjeta.errors.pin" v-text="formTarjeta.errors.pin" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
                     </div>
@@ -619,7 +619,7 @@
                     <div class="mt-4">
 
                         <label for="puk" class="text-lg mb-3">PUK</label>
-                        <input v-model="formTarjeta.puk" type="number" maxlength="8" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-80 sm:w-50 xl:w-80 2xl:w-80"/>
+                        <input v-model="formTarjeta.puk" type="text" maxlength="8" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:ring-teal-600 focus:outline-teal-600 focus:shadow-outline-teal-600 md:w-80 sm:w-50 xl:w-80 2xl:w-80"/>
 
                         <div v-if="formTarjeta.errors.puk" v-text="formTarjeta.errors.puk" class="block appearance-none w-full mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded md:w-50 sm:w-50 xl:w-80 2xl:w-80" role="alert"></div>
                     </div>
